@@ -24,7 +24,7 @@ chrome.runtime.onMessage.addListener((data,sender,sendResponse) => {
         }
 
         map.set(notificationId,notif)
-        badge()
+        // badge()
 
         notif.timer = setTimeout(function(){    
 
@@ -33,7 +33,7 @@ chrome.runtime.onMessage.addListener((data,sender,sendResponse) => {
             // 关闭 tab
             chrome.tabs.remove(sender.tab.id)
             map.delete(notificationId)
-            badge()
+            // badge()
 
 
         }, customField.lasting);
@@ -63,7 +63,7 @@ chrome.notifications.onClicked.addListener((notificationId)=>{
     }
 
     map.delete(notificationId)
-    badge()
+    // badge()
 })
 
 

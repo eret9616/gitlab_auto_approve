@@ -16,7 +16,7 @@
     ],
     "content_scripts": [
         {
-          "matches": [""],
+          "matches": ["https://git.corp.kuaishou.com/ks-frontend/data/kuaishou-frontend-star-pulse/-/merge_requests/*"],
           "css": ["styles.css"],
           "js": ["contentScript.js"]
         }
