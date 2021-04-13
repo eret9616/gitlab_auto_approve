@@ -1,8 +1,8 @@
 const app = Vue.createApp({
     template:`
     <span @click='handleToggle'>
-    <button v-if='isEnable'>关闭</button>
-    <button v-else>开启</button>
+    <button v-if='isEnable'>Disable</button>
+    <button v-else>Enable</button>
     </span>
     `,
     data(){

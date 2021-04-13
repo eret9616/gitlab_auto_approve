@@ -22,7 +22,6 @@ const app = Vue.createApp({
     methods:{
         handleAdd(){
             this.list.push(this.inputModel);
-            // 添加到chrome中 sync
             chrome.storage.sync.set({'list':this.list},()=>{
                 chrome.storage.sync.get('list',(result)=>{})
             })
@@ -35,7 +34,6 @@ const app = Vue.createApp({
         }
     },
     created(){
-        // 获取当前的集合 添加到上面
         chrome.storage.sync.get('list',(result)=>{
             if(result?.list){
                 if(Object.keys(result.list).length){
