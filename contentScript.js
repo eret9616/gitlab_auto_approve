@@ -1,5 +1,4 @@
 chrome.storage.sync.get('status',(result=>{
-  
   let s = result.status
   if(s === undefined){
     chrome.storage.sync.set({status:true})
@@ -23,13 +22,10 @@ function sendNotification(customField,title,message){
   });
 }
 
-const LASTING = 5
 
-setTimeout(()=>{
-
-try{
-    var btn = document.querySelector('button[data-qa-selector="approve_button"]')
-    if(!btn) return
+function approve(){
+  var btn = document.querySelector('button[data-qa-selector="approve_button"]')
+  if(btn){
     const innerText = btn.querySelector('span').innerText
     if(innerText.trim() === 'Approve'){
       btn?.click()
@@ -39,14 +35,35 @@ try{
           approve:true
         }
         ,'approved',`${LASTING}s to revert`)
-
-    }else{
-      sendNotification({ lasting:LASTING*1000},'warning',`no approve btn`)
     }
+  } else{
+    sendNotification({ lasting:LASTING*1000},'warning',`no approve btn`)
+  }
+}
+
+
+// notification lasting seconds
+const LASTING = 5
+
+
+// initialize
+setTimeout(()=>{
+try{
+    var btn = document.querySelector('button[data-qa-selector="approve_button"]')
+    if(!btn) {
+      if(window.location.href.includes('/diffs')){
+          const overview =document.querySelector('a[data-target="#notes"]')
+          overview.click()
+          setTimeout(()=>{
+            approve()
+          },2500)
+      }
+      return
+    }
+    approve()
 }catch(e){
       sendNotification({ lasting:LASTING*1000},'err',`err in try catch ${e}`)
 }
-
 },800)
 
 
