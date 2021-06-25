@@ -16,7 +16,7 @@
     ],
     "content_scripts": [
         {
-          "matches": ["/merge_requests/*"],
+          "matches": ["__YOUR_PROJECT_LINK__/merge_requests/*"],
           "css": ["styles.css"],
           "js": ["contentScript.js"]
         }
